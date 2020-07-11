@@ -1,4 +1,8 @@
-Readme text goes here
+# Draw-O-Matic
 
+Just wanted a digital whiteboard. PRs welcome.
 
-From template
+- [ ] Clear board
+- [ ] Save file
+- [ ] Export image
+- [ ] Remote Pairing
