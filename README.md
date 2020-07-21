@@ -17,5 +17,6 @@ pen movements in a correct ratio.
 
 - [x] Clear board
 - [x] Save file(super + 's')
+- [x] Close App(super + 'q')
 - [ ] Export image
 - [ ] Remote Pairing
