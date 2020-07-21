@@ -7,12 +7,16 @@ defmodule DrawOMatic.Scene.Home do
   import Scenic.Primitives
   import Scenic.Components
 
+  require Logger
+
   defmodule State do
     defstruct [:graph, :drawing, :viewport, :prev_coords, :stroke, :super, :saved]
   end
 
   @impl true
   def init(_, opts) do
+    Process.flag(:trap_exit, true)
+
     state =
       case File.read("state.bin") do
         {:ok, state} ->
@@ -79,9 +83,9 @@ defmodule DrawOMatic.Scene.Home do
 
   def do_handle_input({:key, {key, :press, _}}, _context, %{super: true} = state)
       when key in ["S"] do
-    File.write!("state.bin", :erlang.term_to_binary(state))
-    IO.inspect("We saved!")
     state = %{state | saved: true}
+    save_state(state)
+
     {:noreply, state}
   end
 
@@ -111,8 +115,21 @@ defmodule DrawOMatic.Scene.Home do
     {:noreply, state, push: graph}
   end
 
+  def do_handle_input({:key, {"Q", :press, _}}, _context, %{super: true} = state) do
+    {:stop, :normal, state}
+  end
+
   def do_handle_input(_input, _context, state) do
     {:noreply, state}
+  end
+
+  @impl true
+  def terminate(:shutdown, state) do
+    save_state(state)
+  end
+
+  defp save_state(state) do
+    File.write!("state.bin", :erlang.term_to_binary(state))
   end
 
   defp drawn_line_id(_cursor_coords) do
