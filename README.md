@@ -39,6 +39,7 @@ pen movements in a correct ratio.
 
 - Erasing as noted above. Just don't make mistakes.
 - As the app will save a file, if you get into an odd state, delete "$FILENAME.bin" from the root of the app directory.
+- Drawing too quickly will result in straight lines where curved lines are intended. Will need to explore this performance more.
 
 ## Contributing
 
