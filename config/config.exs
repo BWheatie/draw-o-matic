@@ -5,13 +5,13 @@ use Mix.Config
 # Configure the main viewport for the Scenic application
 config :draw_o_matic, :viewport, %{
   name: :main_viewport,
-  size: {700, 600},
+  size: {1200, 800},
   default_scene: {DrawOMatic.Scene.Home, nil},
   drivers: [
     %{
       module: Scenic.Driver.Glfw,
       name: :glfw,
-      opts: [resizeable: false, title: "draw_o_matic"]
+      opts: [resizeable: true, title: "draw_o_matic"]
     }
   ]
 }

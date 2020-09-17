@@ -16,15 +16,16 @@ defmodule DrawOMatic.MixProject do
   def application do
     [
       mod: {DrawOMatic, []},
-      extra_applications: []
+      extra_applications: [:crypto]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:scenic, "~> 0.10"},
-      {:scenic_driver_glfw, "~> 0.10", targets: :host},
+      {:scenic, "~> 0.10.3", override: true},
+      {:scenic_layout_o_matic, path: "~/workspace/scenic_layout_o_matic"},
+      {:scenic_driver_glfw, "~> 0.10", targets: :host}
     ]
   end
 end
